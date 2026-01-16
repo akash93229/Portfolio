@@ -1,28 +1,29 @@
 from pydantic_settings import BaseSettings
 from typing import List, Optional
+import os
 
 class Settings(BaseSettings):
-    # Database
-    DATABASE_URL: str
+    # Database - default to SQLite
+    DATABASE_URL: str = "sqlite:///./portfolio.db"
     
     # JWT
-    SECRET_KEY: str
+    SECRET_KEY: str = "your-secret-key-change-in-production"
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
     
-    # CORS
-    ALLOWED_ORIGINS: List[str] = ["http://localhost:5173"]
+    # CORS - Allow all origins for portfolio
+    ALLOWED_ORIGINS: List[str] = ["*"]
     
     # Environment
-    ENVIRONMENT: str = "development"
+    ENVIRONMENT: str = "production"
     
     # Email Configuration
-    EMAIL_HOST: str = "smtp.gmail.com"
-    EMAIL_PORT: int = 587
-    EMAIL_USER: Optional[str] = None
-    EMAIL_PASSWORD: Optional[str] = None
-    EMAIL_USE_TLS: bool = True
-    RECEIVER_EMAIL: Optional[str] = None
+    EMAIL_HOST: str = os.getenv("EMAIL_HOST", "smtp.gmail.com")
+    EMAIL_PORT: int = int(os.getenv("EMAIL_PORT", "587"))
+    EMAIL_USER: Optional[str] = os.getenv("EMAIL_USER")
+    EMAIL_PASSWORD: Optional[str] = os.getenv("EMAIL_PASSWORD")
+    EMAIL_USE_TLS: bool = os.getenv("EMAIL_USE_TLS", "true").lower() == "true"
+    RECEIVER_EMAIL: Optional[str] = os.getenv("RECEIVER_EMAIL", "akashpasay567@gmail.com")
     
     class Config:
         env_file = ".env"
