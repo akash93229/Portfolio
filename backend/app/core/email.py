@@ -8,7 +8,8 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # Admin email - where contact notifications are sent
-ADMIN_EMAIL = "akashpasay567@gmail.com"
+# Using the Resend account email (free tier only allows sending to your own email)
+ADMIN_EMAIL = "akashmalviya244@gmail.com"
 
 
 def _send_email(to_email: str, subject: str, html_content: str, reply_to: str = None) -> bool:
