@@ -403,124 +403,117 @@ const App: React.FC = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className={`py-24 px-6 ${isDark ? 'bg-slate-900' : 'bg-slate-50/50'}`}>
-        <div className="max-w-7xl mx-auto">
+      <section id="contact" className={`py-20 px-6 ${isDark ? 'bg-slate-900' : 'bg-slate-50/50'}`}>
+        <div className="max-w-6xl mx-auto">
           <SectionHeading title="Let's Connect" subtitle="Ready to optimize your cloud infrastructure. Let's talk!" isDark={isDark} />
           
-          <div className="grid lg:grid-cols-5 gap-12 mt-12">
-            {/* Contact Info - Smaller Column */}
-            <div className="lg:col-span-2 space-y-4">
-              <div className={`group flex items-center gap-4 p-4 rounded-xl transition-all ${isDark ? 'bg-slate-800/50 hover:bg-slate-800' : 'bg-white hover:shadow-md shadow-sm'}`}>
-                <div className={`p-3 rounded-xl transition-all ${isDark ? 'bg-blue-600/20 text-blue-400' : 'bg-blue-100 text-blue-600'}`}>
-                  <Mail size={22} />
+          <div className="grid lg:grid-cols-2 gap-10 mt-10 items-start">
+            {/* Contact Info */}
+            <div className="space-y-3">
+              <div className={`group flex items-center gap-3 p-3 rounded-2xl transition-all ${isDark ? 'bg-slate-800/50 hover:bg-slate-800' : 'bg-white hover:shadow-md shadow-sm'}`}>
+                <div className={`p-2.5 rounded-xl ${isDark ? 'bg-blue-600/20 text-blue-400' : 'bg-blue-100 text-blue-600'}`}>
+                  <Mail size={18} />
                 </div>
                 <div>
-                  <p className={`text-[10px] font-bold uppercase tracking-widest ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>Email</p>
+                  <p className={`text-[9px] font-bold uppercase tracking-widest ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>Email</p>
                   <a href="mailto:akashpasay567@gmail.com" className={`text-sm font-semibold hover:text-blue-500 transition-colors ${isDark ? 'text-white' : 'text-slate-900'}`}>akashpasay567@gmail.com</a>
                 </div>
               </div>
-              <div className={`group flex items-center gap-4 p-4 rounded-xl transition-all ${isDark ? 'bg-slate-800/50 hover:bg-slate-800' : 'bg-white hover:shadow-md shadow-sm'}`}>
-                <div className={`p-3 rounded-xl transition-all ${isDark ? 'bg-blue-600/20 text-blue-400' : 'bg-blue-100 text-blue-600'}`}>
-                  <Phone size={22} />
+              <div className={`group flex items-center gap-3 p-3 rounded-2xl transition-all ${isDark ? 'bg-slate-800/50 hover:bg-slate-800' : 'bg-white hover:shadow-md shadow-sm'}`}>
+                <div className={`p-2.5 rounded-xl ${isDark ? 'bg-blue-600/20 text-blue-400' : 'bg-blue-100 text-blue-600'}`}>
+                  <Phone size={18} />
                 </div>
                 <div>
-                  <p className={`text-[10px] font-bold uppercase tracking-widest ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>Phone</p>
+                  <p className={`text-[9px] font-bold uppercase tracking-widest ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>Phone</p>
                   <a href="tel:+919753072646" className={`text-sm font-semibold hover:text-blue-500 transition-colors ${isDark ? 'text-white' : 'text-slate-900'}`}>+91 97530-72646</a>
                 </div>
               </div>
-              <div className={`group flex items-center gap-4 p-4 rounded-xl transition-all ${isDark ? 'bg-slate-800/50 hover:bg-slate-800' : 'bg-white hover:shadow-md shadow-sm'}`}>
-                <div className={`p-3 rounded-xl transition-all ${isDark ? 'bg-blue-600/20 text-blue-400' : 'bg-blue-100 text-blue-600'}`}>
-                  <Linkedin size={22} />
+              <div className={`group flex items-center gap-3 p-3 rounded-2xl transition-all ${isDark ? 'bg-slate-800/50 hover:bg-slate-800' : 'bg-white hover:shadow-md shadow-sm'}`}>
+                <div className={`p-2.5 rounded-xl ${isDark ? 'bg-blue-600/20 text-blue-400' : 'bg-blue-100 text-blue-600'}`}>
+                  <Linkedin size={18} />
                 </div>
                 <div>
-                  <p className={`text-[10px] font-bold uppercase tracking-widest ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>LinkedIn</p>
+                  <p className={`text-[9px] font-bold uppercase tracking-widest ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>LinkedIn</p>
                   <a href="https://www.linkedin.com/in/akash-malviya-47069216a" target="_blank" rel="noopener noreferrer" className={`text-sm font-semibold hover:text-blue-500 transition-colors ${isDark ? 'text-white' : 'text-slate-900'}`}>akash-malviya</a>
                 </div>
               </div>
-              <div className={`group flex items-center gap-4 p-4 rounded-xl transition-all ${isDark ? 'bg-slate-800/50 hover:bg-slate-800' : 'bg-white hover:shadow-md shadow-sm'}`}>
-                <div className={`p-3 rounded-xl transition-all ${isDark ? 'bg-blue-600/20 text-blue-400' : 'bg-blue-100 text-blue-600'}`}>
-                  <Github size={22} />
+              <div className={`group flex items-center gap-3 p-3 rounded-2xl transition-all ${isDark ? 'bg-slate-800/50 hover:bg-slate-800' : 'bg-white hover:shadow-md shadow-sm'}`}>
+                <div className={`p-2.5 rounded-xl ${isDark ? 'bg-blue-600/20 text-blue-400' : 'bg-blue-100 text-blue-600'}`}>
+                  <Github size={18} />
                 </div>
                 <div>
-                  <p className={`text-[10px] font-bold uppercase tracking-widest ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>GitHub</p>
+                  <p className={`text-[9px] font-bold uppercase tracking-widest ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>GitHub</p>
                   <a href="https://github.com/akash93229" target="_blank" rel="noopener noreferrer" className={`text-sm font-semibold hover:text-blue-500 transition-colors ${isDark ? 'text-white' : 'text-slate-900'}`}>akash93229</a>
                 </div>
               </div>
             </div>
 
-            {/* Contact Form - Larger Column */}
-            <div className="lg:col-span-3">
-              <div className="relative group">
-                {/* Gradient Border Glow */}
-                <div className={`absolute -inset-1 rounded-2xl bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 opacity-50 blur-sm group-hover:opacity-70 group-hover:blur-md transition-all duration-500 ${isDark ? 'opacity-40' : 'opacity-30'}`}></div>
-                <div className={`absolute -inset-px rounded-2xl bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 opacity-60 ${isDark ? 'opacity-50' : 'opacity-40'}`}></div>
-                
-                <div className={`relative p-8 md:p-10 rounded-2xl transition-all ${isDark ? 'bg-slate-900' : 'bg-white'}`}>
-                  {/* Form Header */}
-                  <div className="flex items-center justify-between mb-8">
-                    <div>
-                      <h3 className={`text-2xl font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>
-                        Send a <span className="bg-gradient-to-r from-blue-500 to-indigo-500 bg-clip-text text-transparent">Message</span>
-                      </h3>
-                      <p className={`text-sm mt-1 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>I'll respond within 24 hours</p>
-                    </div>
-                    <div className={`p-3 rounded-xl ${isDark ? 'bg-gradient-to-br from-blue-600/20 to-indigo-600/20 text-blue-400' : 'bg-gradient-to-br from-blue-50 to-indigo-50 text-blue-600'}`}>
-                      <Mail size={24} />
-                    </div>
+            {/* Contact Form - Compact & Curvy */}
+            <div className="relative group">
+              {/* Gradient Border */}
+              <div className={`absolute -inset-0.5 rounded-3xl bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 opacity-40 blur-sm group-hover:opacity-60 transition-all duration-300`}></div>
+              
+              <div className={`relative p-6 rounded-3xl ${isDark ? 'bg-slate-900' : 'bg-white'}`}>
+                {/* Header */}
+                <div className="flex items-center justify-between mb-5">
+                  <div>
+                    <h3 className={`text-lg font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                      Quick <span className="text-blue-500">Message</span>
+                    </h3>
+                    <p className={`text-xs ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>I'll respond within 24 hours</p>
                   </div>
-
-                  {submitStatus === 'success' ? (
-                    <div className="py-16 text-center space-y-4">
-                      <div className={`inline-flex items-center justify-center p-5 rounded-full ${isDark ? 'bg-emerald-900/30 text-emerald-400' : 'bg-emerald-50 text-emerald-600'}`}>
-                        <CheckCircle2 size={48} />
-                      </div>
-                      <h3 className={`text-2xl font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>Message Sent!</h3>
-                      <p className={`text-sm max-w-sm mx-auto ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Thank you for reaching out. I'll review your message and get back to you within 24 hours.</p>
-                      <button onClick={() => setSubmitStatus('idle')} className="mt-4 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-indigo-700 shadow-lg shadow-blue-500/25 transition-all">
-                        Send Another Message
-                      </button>
-                    </div>
-                  ) : submitStatus === 'error' ? (
-                    <div className="py-16 text-center space-y-4">
-                      <div className={`inline-flex items-center justify-center p-5 rounded-full ${isDark ? 'bg-red-900/30 text-red-400' : 'bg-red-50 text-red-600'}`}>
-                        <AlertCircle size={48} />
-                      </div>
-                      <h3 className={`text-2xl font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>Something Went Wrong</h3>
-                      <p className={`text-sm max-w-sm mx-auto ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Please try again or contact me directly via email.</p>
-                      <button onClick={() => setSubmitStatus('idle')} className="mt-4 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-indigo-700 shadow-lg shadow-blue-500/25 transition-all">
-                        Try Again
-                      </button>
-                    </div>
-                  ) : (
-                    <form className="space-y-5" onSubmit={handleSubmit} noValidate>
-                      <div className="grid md:grid-cols-2 gap-5">
-                        <div className="space-y-2">
-                          <label className={`text-xs font-semibold uppercase tracking-wider ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>First Name</label>
-                          <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} placeholder="John" className={`w-full px-4 py-3.5 rounded-xl border-2 text-sm transition-all focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 ${isDark ? `bg-slate-800/50 border-slate-700 text-white placeholder:text-slate-500 hover:border-slate-600 ${errors.firstName ? 'border-red-500' : ''}` : `bg-slate-50/50 border-slate-200 text-slate-900 placeholder:text-slate-400 hover:border-slate-300 ${errors.firstName ? 'border-red-400' : ''}`}`} />
-                          {errors.firstName && <p className="text-red-500 text-xs flex items-center gap-1"><AlertCircle size={12} /> {errors.firstName}</p>}
-                        </div>
-                        <div className="space-y-2">
-                          <label className={`text-xs font-semibold uppercase tracking-wider ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Last Name</label>
-                          <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} placeholder="Doe" className={`w-full px-4 py-3.5 rounded-xl border-2 text-sm transition-all focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 ${isDark ? `bg-slate-800/50 border-slate-700 text-white placeholder:text-slate-500 hover:border-slate-600 ${errors.lastName ? 'border-red-500' : ''}` : `bg-slate-50/50 border-slate-200 text-slate-900 placeholder:text-slate-400 hover:border-slate-300 ${errors.lastName ? 'border-red-400' : ''}`}`} />
-                          {errors.lastName && <p className="text-red-500 text-xs flex items-center gap-1"><AlertCircle size={12} /> {errors.lastName}</p>}
-                        </div>
-                      </div>
-                      <div className="space-y-2">
-                        <label className={`text-xs font-semibold uppercase tracking-wider ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Email Address</label>
-                        <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="john@example.com" className={`w-full px-4 py-3.5 rounded-xl border-2 text-sm transition-all focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 ${isDark ? `bg-slate-800/50 border-slate-700 text-white placeholder:text-slate-500 hover:border-slate-600 ${errors.email ? 'border-red-500' : ''}` : `bg-slate-50/50 border-slate-200 text-slate-900 placeholder:text-slate-400 hover:border-slate-300 ${errors.email ? 'border-red-400' : ''}`}`} />
-                        {errors.email && <p className="text-red-500 text-xs flex items-center gap-1"><AlertCircle size={12} /> {errors.email}</p>}
-                      </div>
-                      <div className="space-y-2">
-                        <label className={`text-xs font-semibold uppercase tracking-wider ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Message</label>
-                        <textarea name="message" value={formData.message} onChange={handleChange} rows={4} placeholder="Tell me about your project or inquiry..." className={`w-full px-4 py-3.5 rounded-xl border-2 text-sm transition-all focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 resize-none ${isDark ? `bg-slate-800/50 border-slate-700 text-white placeholder:text-slate-500 hover:border-slate-600 ${errors.message ? 'border-red-500' : ''}` : `bg-slate-50/50 border-slate-200 text-slate-900 placeholder:text-slate-400 hover:border-slate-300 ${errors.message ? 'border-red-400' : ''}`}`}></textarea>
-                        {errors.message && <p className="text-red-500 text-xs flex items-center gap-1"><AlertCircle size={12} /> {errors.message}</p>}
-                      </div>
-                      <button type="submit" disabled={isSubmitting} className="w-full py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold rounded-xl text-base hover:from-blue-700 hover:to-indigo-700 hover:shadow-xl shadow-lg shadow-blue-500/25 transition-all active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2">
-                        {isSubmitting ? (<><Loader2 className="animate-spin" size={20} /> Sending Message...</>) : (<><Mail size={20} /> Send Message</>)}
-                      </button>
-                    </form>
-                  )}
+                  <div className={`p-2 rounded-xl ${isDark ? 'bg-blue-600/20 text-blue-400' : 'bg-blue-50 text-blue-600'}`}>
+                    <Mail size={18} />
+                  </div>
                 </div>
+
+                {submitStatus === 'success' ? (
+                  <div className="py-10 text-center space-y-3">
+                    <div className={`inline-flex items-center justify-center p-4 rounded-full ${isDark ? 'bg-emerald-900/30 text-emerald-400' : 'bg-emerald-50 text-emerald-600'}`}>
+                      <CheckCircle2 size={36} />
+                    </div>
+                    <h3 className={`text-lg font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>Message Sent!</h3>
+                    <p className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>I'll get back to you soon.</p>
+                    <button onClick={() => setSubmitStatus('idle')} className="mt-3 px-5 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-sm font-semibold rounded-2xl hover:shadow-lg transition-all">
+                      Send Another
+                    </button>
+                  </div>
+                ) : submitStatus === 'error' ? (
+                  <div className="py-10 text-center space-y-3">
+                    <div className={`inline-flex items-center justify-center p-4 rounded-full ${isDark ? 'bg-red-900/30 text-red-400' : 'bg-red-50 text-red-600'}`}>
+                      <AlertCircle size={36} />
+                    </div>
+                    <h3 className={`text-lg font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>Failed</h3>
+                    <p className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>Please try again.</p>
+                    <button onClick={() => setSubmitStatus('idle')} className="mt-3 px-5 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-sm font-semibold rounded-2xl hover:shadow-lg transition-all">
+                      Retry
+                    </button>
+                  </div>
+                ) : (
+                  <form className="space-y-4" onSubmit={handleSubmit} noValidate>
+                    <div className="grid grid-cols-2 gap-3">
+                      <div>
+                        <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} placeholder="First Name" className={`w-full px-4 py-2.5 rounded-2xl border text-sm transition-all focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 ${isDark ? `bg-slate-800 border-slate-700 text-white placeholder:text-slate-500 ${errors.firstName ? 'border-red-500' : ''}` : `bg-slate-50 border-slate-200 text-slate-900 placeholder:text-slate-400 ${errors.firstName ? 'border-red-400' : ''}`}`} />
+                        {errors.firstName && <p className="text-red-500 text-[10px] mt-1">{errors.firstName}</p>}
+                      </div>
+                      <div>
+                        <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} placeholder="Last Name" className={`w-full px-4 py-2.5 rounded-2xl border text-sm transition-all focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 ${isDark ? `bg-slate-800 border-slate-700 text-white placeholder:text-slate-500 ${errors.lastName ? 'border-red-500' : ''}` : `bg-slate-50 border-slate-200 text-slate-900 placeholder:text-slate-400 ${errors.lastName ? 'border-red-400' : ''}`}`} />
+                        {errors.lastName && <p className="text-red-500 text-[10px] mt-1">{errors.lastName}</p>}
+                      </div>
+                    </div>
+                    <div>
+                      <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Email Address" className={`w-full px-4 py-2.5 rounded-2xl border text-sm transition-all focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 ${isDark ? `bg-slate-800 border-slate-700 text-white placeholder:text-slate-500 ${errors.email ? 'border-red-500' : ''}` : `bg-slate-50 border-slate-200 text-slate-900 placeholder:text-slate-400 ${errors.email ? 'border-red-400' : ''}`}`} />
+                      {errors.email && <p className="text-red-500 text-[10px] mt-1">{errors.email}</p>}
+                    </div>
+                    <div>
+                      <textarea name="message" value={formData.message} onChange={handleChange} rows={3} placeholder="Your message..." className={`w-full px-4 py-2.5 rounded-2xl border text-sm transition-all focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 resize-none ${isDark ? `bg-slate-800 border-slate-700 text-white placeholder:text-slate-500 ${errors.message ? 'border-red-500' : ''}` : `bg-slate-50 border-slate-200 text-slate-900 placeholder:text-slate-400 ${errors.message ? 'border-red-400' : ''}`}`}></textarea>
+                      {errors.message && <p className="text-red-500 text-[10px] mt-1">{errors.message}</p>}
+                    </div>
+                    <button type="submit" disabled={isSubmitting} className="w-full py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-2xl text-sm hover:shadow-lg shadow-md shadow-blue-500/20 transition-all active:scale-[0.98] disabled:opacity-70 flex items-center justify-center gap-2">
+                      {isSubmitting ? (<><Loader2 className="animate-spin" size={16} /> Sending...</>) : (<><Mail size={16} /> Send Message</>)}
+                    </button>
+                  </form>
+                )}
               </div>
             </div>
           </div>
