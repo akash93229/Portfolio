@@ -1,7 +1,5 @@
-import smtplib
 import logging
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
+import httpx
 from datetime import datetime
 import os
 
@@ -13,60 +11,44 @@ logger = logging.getLogger(__name__)
 ADMIN_EMAIL = "akashpasay567@gmail.com"
 
 
-def get_email_config():
-    """Get email configuration from environment variables"""
-    return {
-        "host": os.getenv("EMAIL_HOST", "smtp.gmail.com"),
-        "port": int(os.getenv("EMAIL_PORT", "587")),
-        "user": os.getenv("EMAIL_USER", ""),
-        "password": os.getenv("EMAIL_PASSWORD", ""),
-        "use_tls": os.getenv("EMAIL_USE_TLS", "true").lower() == "true",
-    }
-
-
 def _send_email(to_email: str, subject: str, html_content: str, reply_to: str = None) -> bool:
-    """Internal function to send an email"""
-    config = get_email_config()
+    """Send email using Resend API (works on Render free tier)"""
+    resend_api_key = os.getenv("RESEND_API_KEY", "")
     
-    if not config["password"] or not config["user"]:
-        logger.warning("Email credentials not configured. Email not sent.")
+    if not resend_api_key:
+        logger.warning("RESEND_API_KEY not configured. Email not sent.")
         return False
     
     try:
-        msg = MIMEMultipart("alternative")
-        msg["Subject"] = subject
-        msg["From"] = f"Akash Malviya Portfolio <{config['user']}>"
-        msg["To"] = to_email
+        logger.info(f"Sending email via Resend API to {to_email}...")
+        
+        payload = {
+            "from": "Akash Portfolio <onboarding@resend.dev>",
+            "to": [to_email],
+            "subject": subject,
+            "html": html_content
+        }
         
         if reply_to:
-            msg["Reply-To"] = reply_to
+            payload["reply_to"] = reply_to
         
-        part = MIMEText(html_content, "html")
-        msg.attach(part)
+        response = httpx.post(
+            "https://api.resend.com/emails",
+            headers={
+                "Authorization": f"Bearer {resend_api_key}",
+                "Content-Type": "application/json"
+            },
+            json=payload,
+            timeout=10.0
+        )
         
-        logger.info(f"Connecting to SMTP server {config['host']}:{config['port']}...")
-        
-        if config["use_tls"]:
-            with smtplib.SMTP(config["host"], config["port"], timeout=10) as server:
-                server.ehlo()
-                server.starttls()
-                server.ehlo()
-                server.login(config["user"], config["password"])
-                server.sendmail(config["user"], to_email, msg.as_string())
+        if response.status_code == 200:
+            logger.info(f"✅ Email sent successfully to {to_email}")
+            return True
         else:
-            with smtplib.SMTP_SSL(config["host"], config["port"], timeout=10) as server:
-                server.login(config["user"], config["password"])
-                server.sendmail(config["user"], to_email, msg.as_string())
+            logger.error(f"❌ Resend API error: {response.status_code} - {response.text}")
+            return False
         
-        logger.info(f"✅ Email sent successfully to {to_email}")
-        return True
-        
-    except smtplib.SMTPAuthenticationError as e:
-        logger.error(f"❌ SMTP Authentication failed: {str(e)}")
-        return False
-    except smtplib.SMTPException as e:
-        logger.error(f"❌ SMTP error: {str(e)}")
-        return False
     except Exception as e:
         logger.error(f"❌ Failed to send email: {str(e)}")
         return False
