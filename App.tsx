@@ -84,7 +84,7 @@ const App: React.FC = () => {
     setSubmitStatus('idle');
     try {
       // @ts-ignore
-      const apiUrl = import.meta.env?.VITE_API_URL || 'http://localhost:8000/api/v1';
+      const apiUrl = import.meta.env?.VITE_API_URL || 'https://portfolio-api-gcea.onrender.com/api/v1';
       const response = await fetch(`${apiUrl}/contacts/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
