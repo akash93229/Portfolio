@@ -2,7 +2,6 @@
 
 A modern, responsive portfolio website showcasing DevOps engineering expertise, cloud infrastructure projects, and professional experience.
 
-![Portfolio Preview](./Akash.png)
 
 ## 🌐 Live Demo
 
