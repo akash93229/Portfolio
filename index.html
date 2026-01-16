@@ -1,25 +1,38 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Akash Malviya - DevOps Engineer & Cloud Infrastructure Specialist. Expert in AWS, Docker, Terraform, CI/CD pipelines, and cloud-native solutions." />
+    <meta name="keywords" content="DevOps, Cloud Engineer, AWS, Docker, Terraform, CI/CD, Kubernetes, Infrastructure" />
+    <meta name="author" content="Akash Malviya" />
+    <meta property="og:title" content="Akash Malviya | DevOps & Cloud Engineer" />
+    <meta property="og:description" content="Results-driven DevOps Engineer with expertise in cloud infrastructure, automation, and CI/CD pipelines." />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>Akash Malviya | DevOps & Cloud Engineer</title>
+    
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind Config -->
     <script>
       tailwind.config = {
         darkMode: 'class',
         theme: {
           extend: {
             fontFamily: {
-              sans: ['Inter', 'sans-serif'],
+              sans: ['Inter', 'system-ui', 'sans-serif'],
             },
             animation: {
               'fade-in': 'fadeIn 0.5s ease-out forwards',
               'slide-up': 'slideUp 0.5s ease-out forwards',
+              'pulse': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
             },
             keyframes: {
               fadeIn: {
@@ -35,14 +48,19 @@
         },
       }
     </script>
+    
+    <!-- Custom Styles -->
     <style>
       body {
-        font-family: 'Inter', sans-serif;
+        font-family: 'Inter', system-ui, sans-serif;
         scroll-behavior: smooth;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
       }
       * {
         transition: background-color 0.3s ease, border-color 0.3s ease, color 0.2s ease;
       }
+      /* Scrollbar Styles */
       ::-webkit-scrollbar {
         width: 8px;
       }
@@ -65,23 +83,27 @@
       .dark ::-webkit-scrollbar-thumb:hover {
         background: #475569;
       }
+      /* Gradient text support */
+      .bg-clip-text {
+        -webkit-background-clip: text;
+        background-clip: text;
+      }
     </style>
-  <script type="importmap">
-{
-  "imports": {
-    "react": "https://esm.sh/react@19.0.0",
-    "react-dom": "https://esm.sh/react-dom@19.0.0",
-    "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
-    "lucide-react": "https://esm.sh/lucide-react@0.462.0",
-    "react-router-dom": "https://esm.sh/react-router-dom@7.0.0",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-    "react/": "https://esm.sh/react@^19.2.3/"
-  }
-}
-</script>
-</head>
+    
+    <!-- Import Maps for ESM -->
+    <script type="importmap">
+      {
+        "imports": {
+          "react": "https://esm.sh/react@18.2.0",
+          "react-dom": "https://esm.sh/react-dom@18.2.0",
+          "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
+          "lucide-react": "https://esm.sh/lucide-react@0.462.0?external=react"
+        }
+      }
+    </script>
+  </head>
   <body class="bg-slate-50 text-slate-900 overflow-x-hidden">
     <div id="root"></div>
-  <script type="module" src="/index.tsx"></script>
-</body>
+    <script type="module" src="/index.tsx"></script>
+  </body>
 </html>

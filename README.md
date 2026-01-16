@@ -5,7 +5,7 @@ A modern, responsive portfolio website showcasing DevOps engineering expertise, 
 
 ## 🌐 Live Demo
 
-**[View Live Portfolio →](https://portfolio-akash-malviya.vercel.app)**
+**[View Live Portfolio →](https://akash-malviya-portfolio.vercel.app)**
 
 ## ✨ Features
 
