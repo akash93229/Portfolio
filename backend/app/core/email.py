@@ -47,14 +47,14 @@ def _send_email(to_email: str, subject: str, html_content: str, reply_to: str = 
         logger.info(f"Connecting to SMTP server {config['host']}:{config['port']}...")
         
         if config["use_tls"]:
-            with smtplib.SMTP(config["host"], config["port"]) as server:
+            with smtplib.SMTP(config["host"], config["port"], timeout=10) as server:
                 server.ehlo()
                 server.starttls()
                 server.ehlo()
                 server.login(config["user"], config["password"])
                 server.sendmail(config["user"], to_email, msg.as_string())
         else:
-            with smtplib.SMTP_SSL(config["host"], config["port"]) as server:
+            with smtplib.SMTP_SSL(config["host"], config["port"], timeout=10) as server:
                 server.login(config["user"], config["password"])
                 server.sendmail(config["user"], to_email, msg.as_string())
         
