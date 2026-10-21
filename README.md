@@ -1,42 +1,103 @@
-# Akash Malviya - DevOps Portfolio
+# Akash Malviya — 3D Portfolio & Cloud Engineering Showcase
 
-A modern, responsive portfolio website showcasing DevOps engineering expertise, cloud infrastructure projects, and professional experience.
+A high-performance, fully immersive 3D personal portfolio and cloud-native architecture showcase engineered for **Akash Malviya (Full Stack Developer & DevOps / Cloud Engineer)**.
 
+Live Deployment: [https://akash-malviya-portfolio.vercel.app/](https://akash-malviya-portfolio.vercel.app/)
 
-## 🌐 Live Demo
+---
 
-**[View Live Portfolio →](https://akash-malviya-portfolio.vercel.app)**
+## 🌟 Key Highlights
 
-## ✨ Features
+- **Scroll-Driven 3D World (Three.js + React Three Fiber + Drei)**: Persistent 3D canvas behind the page with smooth camera transitions across Full Stack & DevOps worlds.
+- **Hero Engine Switcher**: Toggle dynamically between the **3D Cloud Infrastructure Core**, **Liquid Metal Shaders**, and **Liquid Sculpture Particles**.
+- **Interactive 3D Skills Orbit**: Draggable, interactive 3D tech globe paired with accessible semantic HTML categories.
+- **Interactive CI/CD Pipeline Simulator**: Step-by-step interactive runner simulating Git commit, automated CI, Docker multi-stage builds, Terraform validation, CodeDeploy Blue/Green zero-downtime releases, and CloudWatch telemetry with real-time console logs.
+- **3D Case Study Cards**: Tilting glass cards with real-time dynamic light glare calculations and expandable technical case studies for all 3 projects (*StormLane*, *Strapi ECS Pipeline*, *Terraform DocumentDB Module*).
+- **Dual-Track Switcher**: Instant `[ Full Stack | DevOps | Both ]` filtering that adapts content, highlights relevant experiences, and shifts 3D camera focal planes.
+- **Production Metrics**: 100% verified numbers (99.9% uptime, 60% faster deploys, 30% lower AWS cost, 40% faster releases, 80% faster provisioning, 3+ years experience).
 
-- **Modern UI/UX** - Clean, professional design with dark/light theme toggle
-- **Responsive Design** - Optimized for desktop, tablet, and mobile devices
-- **Contact Form** - Functional email system with dual notifications (admin + user confirmation)
-- **Interactive Elements** - Smooth animations and hover effects
-- **SEO Optimized** - Meta tags and semantic HTML structure
+---
 
-## 🛠️ Tech Stack
+## 🛠️ Technology Stack
 
-### Frontend
-- **React 18** with TypeScript
-- **Vite** - Fast build tool
-- **Tailwind CSS** - Utility-first styling
-- **Lucide React** - Icon library
+| Layer | Technologies |
+| :--- | :--- |
+| **Framework & Core** | React 19, TypeScript, Vite |
+| **Styling & Design System** | Tailwind CSS, shadcn UI primitives, Glassmorphism, CSS Variables |
+| **3D & Shaders** | Three.js, `@react-three/fiber`, `@react-three/drei`, WebGL2 GPGPU particles, `@paper-design/shaders-react` |
+| **Animation & Micro-interactions** | Framer Motion / Motion, Canvas Confetti |
+| **Icons & Typography** | Lucide React, Space Grotesk, Inter, JetBrains Mono |
+| **CI/CD & Deployment** | GitHub Actions CI workflow, Vercel |
 
-### Backend
-- **FastAPI** - Python web framework
-- **SQLite** - Database
-- **SMTP** - Email service (Gmail)
-- **Alembic** - Database migrations
+---
 
-## 🚀 Quick Start
+## 📁 Project Architecture & Component Path Convention
 
-### Prerequisites
-- Node.js 18+
-- Python 3.11+
-- Git
+```
+Portfolio/
+├── components/
+│   ├── 3d/
+│   │   ├── Scene3D.tsx              # Persistent R3F scroll-driven 3D world
+│   │   └── SkillsGlobe.tsx          # Draggable 3D interactive skills globe
+│   ├── ui/                          # shadcn UI primitive library (/components/ui)
+│   │   ├── button.tsx               # Reusable button variant primitive
+│   │   ├── badge.tsx                # Status badge primitive
+│   │   ├── card.tsx                 # Base card container
+│   │   ├── liquid-metal-hero.tsx    # Interactive shader hero
+│   │   ├── liquid-sculpture-hero.tsx# WebGL2 GPGPU particle hero
+│   │   └── ...                      # Demos
+│   ├── AboutSection.tsx             # Dual specialization narrative & credentials
+│   ├── ContactSection.tsx           # 1-click email copy & direct message form
+│   ├── ExperienceSection.tsx        # Career timeline container
+│   ├── ExperienceTimeline.tsx       # Glowing 3D timeline with role milestones
+│   ├── HeroSection.tsx              # Dynamic hero with mode selector
+│   ├── ImpactStrip.tsx              # Animated impact counters with real metrics
+│   ├── Navbar.tsx                   # Track switcher, visual mode dropdown, theme toggle
+│   ├── PipelineVisual.tsx           # Interactive CI/CD conveyor & console terminal
+│   ├── ProjectCard3D.tsx            # Tilting 3D card with glare & case-study modal
+│   └── ProjectsSection.tsx          # Production & open source project showcase
+├── data/
+│   └── profile.ts                   # Central source of truth for all portfolio data
+├── lib/
+│   └── utils.ts                     # cn() class merging utility (clsx + tailwind-merge)
+├── public/
+│   ├── Akash.png                    # Profile portrait
+│   └── Akash_Malviya_CV.pdf         # Resume PDF for direct 1-click downloads
+└── .github/
+    └── workflows/
+        └── ci.yml                   # Automated lint, typecheck, and build verification
+```
 
-### Frontend Setup
+### Why the `/components/ui` Path is Standard
+
+The `/components/ui` directory is the canonical convention established by shadcn/ui:
+1. **Separation of Concerns**: Isolates low-level design system primitives (`Button`, `Card`, `Badge`) from domain-specific composite sections (`ProjectsSection`, `Navbar`).
+2. **CLI & Component Tooling Compatibility**: Automated component registries (e.g., shadcn CLI, 21st.dev) rely on `@/components/ui/*` as the default import alias target.
+3. **Reusability & Clean Imports**: Allows consuming any primitive anywhere with predictable, structured imports like `import { Button } from '@/components/ui/button'`.
+
+---
+
+## ✏️ How to Edit Content & Customize
+
+### 1. Edit Profile Details
+All text, metrics, experiences, skills, and links live in one typed file:
+👉 **`data/profile.ts`**
+Edit your bio, titles, contact info, or add new experiences/projects without needing to touch UI components.
+
+### 2. Download CV File
+The CV download button points directly to:
+👉 **`public/Akash_Malviya_CV.pdf`**
+To update your CV, simply replace this file with your updated PDF.
+
+### 3. Customize Colors & Shaders
+- **Color Palettes**: Open `tailwind.config.js` and `src/index.css` to tweak primary, secondary, and accent colors.
+- **3D Core Colors**: In `components/3d/Scene3D.tsx`, customize `CloudInfrastructureCore` colors for Full Stack (`#06B6D4`), DevOps (`#6366F1`), or Both (`#818CF8`).
+
+---
+
+## 🚀 Local Development & Deployment
+
+### Run Locally
 ```bash
 # Install dependencies
 npm install
@@ -45,74 +106,20 @@ npm install
 npm run dev
 ```
 
-### Backend Setup
+### Production Build
 ```bash
-cd backend
-
-# Install Python dependencies
-pip install -r requirements.txt
-
-# Set environment variables
-export EMAIL_HOST=smtp.gmail.com
-export EMAIL_PORT=587
-export EMAIL_USER=your-email@gmail.com
-export EMAIL_PASSWORD=your-app-password
-export EMAIL_USE_TLS=true
-
-# Run server
-uvicorn app.main:app --host 0.0.0.0 --port 8000
+npm run build
+npm run preview
 ```
 
-## 📁 Project Structure
+### Deploy to Vercel
+Deploy with 1 command via the Vercel CLI or by pushing to GitHub:
+```bash
+# Push to GitHub (triggers automated Vercel deployment)
+git add .
+git commit -m "Rebuild 3D portfolio with full-stack & DevOps architecture"
+git push origin main
 
+# Or deploy directly via Vercel CLI
+npx vercel --prod
 ```
-├── App.tsx              # Main React component
-├── components/          # Reusable UI components
-│   ├── Navbar.tsx
-│   ├── ProjectCard.tsx
-│   ├── SkillBadge.tsx
-│   ├── ExperienceItem.tsx
-│   └── SectionHeading.tsx
-├── constants.ts         # Data constants
-├── types.ts            # TypeScript interfaces
-├── backend/            # FastAPI backend
-│   ├── app/
-│   │   ├── api/        # API endpoints
-│   │   ├── core/       # Config & email
-│   │   ├── db/         # Database models
-│   │   └── schemas/    # Pydantic schemas
-│   └── alembic/        # DB migrations
-└── index.html          # Entry point
-```
-
-## 📧 Contact Form
-
-The contact form sends two emails:
-1. **Admin Notification** - Sent to portfolio owner with client details
-2. **User Confirmation** - Sent to the user confirming message receipt
-
-## 🎨 Sections
-
-- **Hero** - Introduction with profile image
-- **About** - Professional summary with key achievements
-- **Skills** - Technical arsenal organized by category
-- **Experience** - Work history timeline
-- **Projects** - Featured DevOps projects
-- **Education** - Academic background & certifications
-- **Contact** - Contact form and social links
-
-## 👤 Author
-
-**Akash Malviya**
-- DevOps Engineer | Cloud Infrastructure Specialist
-- 📧 akashpasay567@gmail.com
-- 💼 [LinkedIn](https://www.linkedin.com/in/akash-malviya-47069216a)
-- 🐙 [GitHub](https://github.com/akash93229)
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
----
-
-⭐ If you found this helpful, please star the repository!

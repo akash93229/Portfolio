@@ -1,164 +1,264 @@
+"use client";
+
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Terminal, Github, Sun, Moon } from 'lucide-react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Download, Menu, X, Terminal, Cpu, Layers } from 'lucide-react';
+import { PROFILE_DATA } from '@/data/profile';
+import { useTheme, useTrack } from '@/components/providers';
 
-interface NavbarProps {
-  isDark: boolean;
-  toggleTheme: () => void;
-}
+// Split half-circle icon matching Design B
+const HalfCircleThemeIcon = () => (
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 16 16"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className="transition-transform duration-300 group-hover:rotate-180"
+    aria-hidden="true"
+  >
+    <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="1.2" />
+    <path d="M8 1a7 7 0 0 1 0 14V1z" fill="currentColor" />
+  </svg>
+);
 
-export const Navbar: React.FC<NavbarProps> = ({ isDark, toggleTheme }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+export default function Navbar() {
+  const { isDark, toggleTheme } = useTheme();
+  const { activeTrack, setActiveTrack } = useTrack();
+  const pathname = usePathname();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Close mobile drawer on resize to desktop or route change
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [pathname]);
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const handleResize = () => {
+      if (window.innerWidth >= 1100) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const navLinks = [
-    { name: 'About', id: 'about' },
-    { name: 'Skills', id: 'skills' },
-    { name: 'Experience', id: 'experience' },
-    { name: 'Projects', id: 'projects' },
-    { name: 'Contact', id: 'contact' },
+    { label: 'About', href: '/about' },
+    { label: 'Experience', href: '/experience' },
+    { label: 'Projects', href: '/projects' },
+    { label: 'Skills', href: '/skills' },
+    { label: 'Contact', href: '/contact' },
   ];
 
-  const scrollToSection = (e: React.MouseEvent | React.UIEvent, id: string) => {
-    e.preventDefault();
-    const element = document.getElementById(id);
-    if (element) {
-      const offset = 80;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
-      window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-    }
-    setIsOpen(false);
-  };
+  const tracks: Array<{ id: 'fullstack' | 'devops' | 'both'; label: string; icon: React.ReactNode }> = [
+    { id: 'both', label: 'Both', icon: <Layers className="w-3.5 h-3.5" /> },
+    { id: 'fullstack', label: 'Full Stack', icon: <Terminal className="w-3.5 h-3.5" /> },
+    { id: 'devops', label: 'DevOps', icon: <Cpu className="w-3.5 h-3.5" /> },
+  ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled 
-        ? isDark 
-          ? 'bg-slate-900/90 backdrop-blur-md border-b border-slate-800 py-3 shadow-lg' 
-          : 'bg-white/90 backdrop-blur-md border-b border-slate-100 py-3 shadow-sm'
-        : 'bg-transparent py-6'
-    }`}>
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        <a 
-          href="#" 
-          onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-          className={`flex items-center gap-3 text-xl font-black tracking-tight ${isDark ? 'text-white' : 'text-slate-900'}`}
-        >
-          <div className={`p-2 rounded-lg ${isDark ? 'bg-blue-600 text-white' : 'bg-slate-900 text-white'}`}>
-            <Terminal size={18} />
+    <header className="fixed top-4 left-0 right-0 z-50 px-4 sm:px-6 pointer-events-none">
+      <div
+        className={`max-w-6xl mx-auto rounded-full px-5 py-2.5 transition-all duration-300 pointer-events-auto shadow-2xl flex items-center justify-between gap-3 sm:gap-6 whitespace-nowrap ${
+          isDark
+            ? 'bg-[#0A0A0A]/85 backdrop-blur-xl border border-white/10 text-white'
+            : 'bg-[#FFFFFF]/90 backdrop-blur-xl border border-black/10 text-slate-900 shadow-slate-300/30'
+        }`}
+      >
+        {/* Brand */}
+        <Link href="/" className="flex items-center gap-2.5 group shrink-0">
+          <div className="w-7 h-7 rounded-full bg-foreground text-background flex items-center justify-center font-bold text-xs font-heading group-hover:scale-105 transition-transform">
+            AM
           </div>
-          <span className="hidden sm:inline">Akash Malviya</span>
-        </a>
+          <span className="font-heading font-semibold text-sm tracking-tight hidden sm:inline">
+            {PROFILE_DATA.identity.name}
+          </span>
+        </Link>
 
-        {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <a 
-              key={link.name} 
-              href={`#${link.id}`}
-              onClick={(e) => scrollToSection(e, link.id)}
-              className={`text-sm font-bold hover:text-blue-600 transition-colors uppercase tracking-widest ${
-                isDark ? 'text-slate-400' : 'text-slate-500'
-              }`}
-            >
-              {link.name}
-            </a>
-          ))}
-          
-          {/* GitHub Link */}
-          <a 
-            href="https://github.com/akash93229" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className={`p-2 rounded-lg transition-all ${
-              isDark 
-                ? 'text-slate-400 hover:text-white hover:bg-slate-800' 
-                : 'text-slate-500 hover:text-slate-900 hover:bg-slate-100'
-            }`}
-            aria-label="GitHub Profile"
-          >
-            <Github size={20} />
-          </a>
-          
-          {/* Theme Toggle */}
-          <button
-            onClick={toggleTheme}
-            className={`p-2 rounded-lg transition-all ${
-              isDark 
-                ? 'text-yellow-400 hover:bg-slate-800' 
-                : 'text-slate-600 hover:bg-slate-100'
-            }`}
-            aria-label="Toggle theme"
-          >
-            {isDark ? <Sun size={20} /> : <Moon size={20} />}
-          </button>
-          
-          <a 
-            href="#contact" 
-            onClick={(e) => scrollToSection(e, 'contact')}
-            className="px-6 py-2.5 text-xs font-black uppercase tracking-widest bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all active:scale-95 shadow-lg shadow-blue-500/20"
-          >
-            Hire Me
-          </a>
+        {/* Navigation Links (Desktop: >= 1100px) */}
+        <nav className="hidden min-[1100px]:flex items-center gap-1.5 text-xs font-medium shrink-0">
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
+            return (
+              <Link
+                key={link.label}
+                href={link.href}
+                className={`relative px-3.5 py-1.5 rounded-full transition-all duration-200 ${
+                  isActive
+                    ? isDark
+                      ? 'text-white font-semibold'
+                      : 'text-black font-semibold'
+                    : isDark
+                    ? 'text-neutral-400 hover:text-white'
+                    : 'text-neutral-600 hover:text-black'
+                }`}
+              >
+                {isActive && (
+                  <motion.div
+                    layoutId="activeNavIndicator"
+                    className={`absolute inset-0 rounded-full ${
+                      isDark ? 'bg-neutral-800/80 border border-neutral-700/60' : 'bg-neutral-100 border border-neutral-300/60'
+                    }`}
+                    transition={{ type: 'spring', stiffness: 500, damping: 35 }}
+                  />
+                )}
+                <span className="relative z-10">{link.label}</span>
+              </Link>
+            );
+          })}
+        </nav>
+
+        {/* Center Track Switcher (Both | Full Stack | DevOps) */}
+        <div
+          className={`hidden sm:flex items-center p-1 rounded-full border text-xs shrink-0 ${
+            isDark ? 'bg-neutral-900/90 border-neutral-800' : 'bg-neutral-100 border-neutral-200'
+          }`}
+        >
+          {tracks.map((t) => {
+            const isActive = activeTrack === t.id;
+            return (
+              <button
+                key={t.id}
+                onClick={() => setActiveTrack(t.id)}
+                className={`relative px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1.5 transition-all ${
+                  isActive
+                    ? isDark
+                      ? 'text-white'
+                      : 'text-neutral-950 font-semibold'
+                    : isDark
+                    ? 'text-neutral-400 hover:text-neutral-200'
+                    : 'text-neutral-500 hover:text-neutral-800'
+                }`}
+              >
+                {isActive && (
+                  <motion.div
+                    layoutId="navbarActiveTrackPill"
+                    className={`absolute inset-0 rounded-full shadow-sm ${
+                      isDark ? 'bg-neutral-800' : 'bg-white shadow-neutral-300'
+                    }`}
+                    transition={{ type: 'spring', stiffness: 450, damping: 32 }}
+                  />
+                )}
+                <span className="relative z-10 flex items-center gap-1">
+                  {t.icon}
+                  {t.label}
+                </span>
+              </button>
+            );
+          })}
         </div>
 
-        {/* Mobile Controls */}
-        <div className="md:hidden flex items-center gap-2">
-          <a 
-            href="https://github.com/akash93229" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className={`p-2 rounded-lg ${isDark ? 'text-slate-400' : 'text-slate-500'}`}
-          >
-            <Github size={20} />
-          </a>
+        {/* Right Actions: Theme Toggle + Resume Button */}
+        <div className="flex items-center gap-2.5 shrink-0">
+          {/* Half-circle Theme Toggle */}
           <button
+            type="button"
             onClick={toggleTheme}
-            className={`p-2 rounded-lg ${isDark ? 'text-yellow-400' : 'text-slate-600'}`}
+            aria-label={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
+            className={`group p-2 rounded-full border transition-colors ${
+              isDark
+                ? 'border-neutral-800 hover:border-neutral-700 bg-neutral-900/80 text-neutral-200 hover:text-white'
+                : 'border-neutral-200 hover:border-neutral-300 bg-neutral-100 text-neutral-800 hover:text-black'
+            }`}
           >
-            {isDark ? <Sun size={20} /> : <Moon size={20} />}
+            <HalfCircleThemeIcon />
           </button>
-          <button 
-            className={`p-2 rounded-lg transition-colors ${isDark ? 'text-slate-400 hover:bg-slate-800' : 'text-slate-600 hover:bg-slate-100'}`}
-            onClick={() => setIsOpen(!isOpen)}
+
+          {/* Resume Button */}
+          <a
+            href={PROFILE_DATA.identity.resumeUrl}
+            download="Akash_Malviya_CV.pdf"
+            className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all duration-200 flex items-center gap-1.5 active:scale-95 border ${
+              isDark
+                ? 'bg-white text-black hover:bg-neutral-200 border-white font-semibold'
+                : 'bg-black text-white hover:bg-neutral-800 border-black font-semibold'
+            }`}
           >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
+            <Download className="w-3.5 h-3.5" />
+            <span>Resume</span>
+          </a>
+
+          {/* Hamburger Drawer Toggle (< 1100px) */}
+          <button
+            type="button"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className={`min-[1100px]:hidden p-2 rounded-full border ${
+              isDark ? 'bg-neutral-900 border-neutral-800 text-white' : 'bg-neutral-100 border-neutral-200 text-black'
+            }`}
+            aria-label="Toggle Navigation Menu"
+          >
+            {isMobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      {isOpen && (
-        <div className={`md:hidden absolute top-full left-0 right-0 border-b shadow-2xl py-8 flex flex-col items-center gap-8 ${
-          isDark ? 'bg-slate-900 border-slate-800' : 'bg-white border-slate-100'
-        }`}>
-          {navLinks.map((link) => (
-            <a 
-              key={link.name} 
-              href={`#${link.id}`} 
-              onClick={(e) => scrollToSection(e, link.id)} 
-              className={`text-lg font-bold uppercase tracking-widest ${
-                isDark ? 'text-slate-300 hover:text-blue-400' : 'text-slate-700 hover:text-blue-600'
+      {/* Mobile Drawer */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -10, scale: 0.98 }}
+            transition={{ duration: 0.2 }}
+            className={`pointer-events-auto max-w-md mx-auto mt-2 rounded-3xl p-5 shadow-2xl border min-[1100px]:hidden ${
+              isDark ? 'bg-[#0A0A0A]/95 border-neutral-800 text-white' : 'bg-white/95 border-neutral-200 text-neutral-900'
+            }`}
+          >
+            {/* Mobile Track Selector */}
+            <div
+              className={`flex items-center justify-between p-1 rounded-full border mb-4 ${
+                isDark ? 'bg-neutral-900 border-neutral-800' : 'bg-neutral-100 border-neutral-200'
               }`}
             >
-              {link.name}
-            </a>
-          ))}
-          <a 
-            href="#contact" 
-            onClick={(e) => scrollToSection(e, 'contact')} 
-            className="w-[80%] text-center px-6 py-4 text-xs font-black uppercase tracking-widest bg-blue-600 text-white rounded-xl shadow-lg shadow-blue-500/20"
-          >
-            Hire Me
-          </a>
-        </div>
-      )}
-    </nav>
+              {tracks.map((t) => (
+                <button
+                  key={t.id}
+                  onClick={() => {
+                    setActiveTrack(t.id);
+                  }}
+                  className={`flex-1 py-1 text-xs rounded-full transition-all text-center ${
+                    activeTrack === t.id
+                      ? isDark
+                        ? 'bg-neutral-800 text-white font-semibold'
+                        : 'bg-white text-black font-semibold shadow-sm'
+                      : 'text-neutral-400'
+                  }`}
+                >
+                  {t.label}
+                </button>
+              ))}
+            </div>
+
+            {/* Links */}
+            <div className="flex flex-col space-y-1.5">
+              {navLinks.map((link) => {
+                const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
+                return (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={`px-3.5 py-2.5 rounded-xl text-sm font-medium transition-colors ${
+                      isActive
+                        ? isDark
+                          ? 'bg-neutral-900 text-white font-semibold'
+                          : 'bg-neutral-100 text-black font-semibold'
+                        : isDark
+                        ? 'hover:bg-neutral-900/60 text-neutral-400'
+                        : 'hover:bg-neutral-100 text-neutral-600'
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </header>
   );
-};
+}

@@ -8,10 +8,15 @@ venv/
 .venv/
 
 # Build outputs
+.next/
 dist/
 dist-ssr/
 build/
 *.egg-info/
+test-results/
+playwright-report/
+lighthouse-*.json
+scratch/
 
 # Environment files
 .env
