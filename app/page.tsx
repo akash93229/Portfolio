@@ -8,6 +8,7 @@ import { useTrack, useTheme } from '@/components/providers';
 import { PROFILE_DATA } from '@/data/profile';
 import RobotHero from '@/components/RobotHero';
 import ImpactStrip from '@/components/ImpactStrip';
+import CinematicSmokeEntrance from '@/components/CinematicSmokeEntrance';
 
 // Warm network early at module load so browser cache has the Spline scene ready
 if (typeof window !== 'undefined') {
@@ -26,7 +27,10 @@ export default function HomePage() {
   const featuredProject = PROFILE_DATA.projects.find((p) => p.featured) || PROFILE_DATA.projects[0];
 
   return (
-    <div className="w-full">
+    <div className="w-full relative">
+      {/* Cinematic Realistic Smoke Entrance */}
+      <CinematicSmokeEntrance />
+
       {/* 1. Robot Hero (Always dark #0A0A0A panel regardless of theme) */}
       <RobotHero activeTrack={activeTrack} />
 

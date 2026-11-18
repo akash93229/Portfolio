@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Download, Sparkles, Hand } from 'lucide-react';
+import { ArrowRight, Download, Hand } from 'lucide-react';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import { PROFILE_DATA } from '@/data/profile';

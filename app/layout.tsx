@@ -4,6 +4,7 @@ import { Providers } from '@/components/providers';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { geist, instrumentSerif, spaceGrotesk, inter, jetbrainsMono } from '@/lib/fonts';
+import { Analytics } from '@vercel/analytics/next';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://akashmalviya.dev'),
@@ -86,6 +87,7 @@ export default function RootLayout({
           </main>
           <Footer />
         </Providers>
+        <Analytics />
       </body>
     </html>
   );
